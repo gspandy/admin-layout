@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <title>layout test</title>
 
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet/less" type="text/css" href="index.less" />
+
+  <script src="http://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
 </head>
 <body>
   <div class="header">
@@ -31,10 +33,10 @@
           <div class="menu-item">123</div>
           <ul class="submenu-box-collapse">
             <li>
-              <div class="menu-item">000</div>
+              <div class="submenu-item">000</div>
             </li>
             <li>
-              <div class="menu-item">999</div>
+              <div class="submenu-item">999</div>
             </li>
           </ul>
         </li>
@@ -45,50 +47,39 @@
           <div class="menu-item">789</div>
           <ul class="submenu-box-collapse">
             <li>
-              <div class="menu-item">aaa</div>
+              <div class="submenu-item">aaa</div>
             </li>
             <li>
-              <div class="menu-item">bbb</div>
+              <div class="submenu-item">bbb</div>
             </li>
           </ul>
         </li>
+        <li>
+          <div class="menu-item">aaaaa</div>
+        </li>
+        <li>
+          <div class="menu-item">bbbbb</div>
+        </li>
+        <li>
+          <div class="menu-item">ccccc</div>
+        </li>
+        <li>
+          <div class="menu-item">ddddd</div>
+        </li>
       </ul>
     </div>
+    <div class="sidebar-expand">
+
+    </div>
     <div class="content">
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
-      <!--<div>123123</div>-->
     </div>
   </div>
 
   <div class="footer">
     Footer
   </div>
+
+
+  <script src="index.js"></script>
 </body>
 </html>
