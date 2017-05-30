@@ -6,7 +6,7 @@
 var dropdownBtns = document.getElementsByClassName('dropdown-btn')
 var dropdownPanels = document.getElementsByClassName('dropdown-panel')
 var menuItems = document.getElementsByClassName('menu-item')
-var submenuPanels = document.getElementsByClassName('submenu-box-collapse')
+var submenuPanels = document.getElementsByClassName('submenu-box-expand')
 
 var i
 
@@ -45,33 +45,11 @@ for (i = 0; i < dropdownPanels.length; i++) {
 }
 
 for (i = 0; i < menuItems.length; i++) {
-  menuItems[i].onmouseenter = function (evt) {
-    console.log('enter menu item')
-
+  menuItems[i].onclick = function (evt) {
     var ele = evt.target
-    ele.nextElementSibling && (ele.nextElementSibling.style.visibility = 'visible')
-  }
-
-  menuItems[i].onmouseleave = function (evt) {
-    console.log('leave menu item')
-
-    var ele = evt.target
-    ele.nextElementSibling && (ele.nextElementSibling.style.visibility = 'hidden')
-  }
-}
-
-for (i = 0; i < submenuPanels.length; i++) {
-  submenuPanels[i].onmouseenter = function (evt) {
-    console.log('enter submenu panel')
-
-    var ele = evt.target
-    ele.style.visibility = 'visible'
-  }
-
-  submenuPanels[i].onmouseleave = function (evt) {
-    console.log('leave submenu panel')
-
-    var ele = evt.target
-    ele.style.visibility = 'hidden'
+    var submenuPanel = ele.nextElementSibling
+    if (submenuPanel && submenuPanel.classList.contains('submenu-box-expand')) {
+      submenuPanel.style.display = submenuPanel.style.display === 'block' ? 'none' : 'block'
+    }
   }
 }
