@@ -14,19 +14,12 @@
 
 @content-padding: 10px;
 
-@dropdown-panel-width: 200px;
-@dropdown-panel-height: 100px;
-@dropdown-btn-hover-background: #00C1DE;
-
 @menu-item-height: 35px;
 @menu-item-background: #42485B;
 @menu-item-color: white;
-@menu-item-hover-background: #00C1DE;
-@menu-item-active-color: white;
 
 @submenu-item-background: #333744;
 @submenu-item-color: white;
-@submenu-item-hover-background: #00C1DE;
 @submenu-item-active-color: #00C1DE;
 
 @userbox-color: #42485B;
@@ -114,7 +107,7 @@ html, body {
   text-align: center;
   width: @header-height;
   &:hover {
-    background-color: @dropdown-btn-hover-background;
+    background-color: @hover-background;
     cursor: pointer;
     transition: background-color 0.08s ease;
   }
@@ -137,7 +130,7 @@ html, body {
   height: 100%;
   padding: 0 5px;
   &:hover {
-    background-color: @dropdown-btn-hover-background;
+    background-color: @hover-background;
     cursor: pointer;
     transition: background-color 0.08s ease;
   }
@@ -177,17 +170,22 @@ html, body {
     width: 20px;
     text-align: center;
   }
+
   &:hover {
-    background-color: @menu-item-hover-background;
+    background-color: @hover-background;
     cursor: pointer;
     transition: background-color 0.08s ease;
   }
-  &-active {
-    color: @menu-item-active-color;
+
+  &-expand {
     .fa-caret-right {
       vertical-align: text-top;
       transform: rotate(90deg);
     }
+  }
+
+  &-active {
+    background-color: @hover-background;
   }
 
   .fa-caret-right {
@@ -199,7 +197,7 @@ html, body {
   }
 }
 
-.submenu-box-expand {
+.submenu-box {
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -207,8 +205,12 @@ html, body {
   .menu-item {
     background-color: @submenu-item-background;
     &:hover {
-      background-color: @menu-item-hover-background;
+      background-color: @hover-background;
+      cursor: pointer;
       transition: background-color 0.08s ease;
+    }
+    &-active {
+      background-color: @hover-background;
     }
   }
 }
