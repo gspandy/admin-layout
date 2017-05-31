@@ -1,4 +1,6 @@
 // Variables
+@hover-background: #00C1DE;
+
 @header-height: 50px;
 @header-background-color: #373D41;
 @header-color: white;
@@ -10,19 +12,24 @@
 @sidebar-width: 200px;
 @sidebar-background: #333744;
 
+@content-padding: 10px;
+
 @dropdown-panel-width: 200px;
 @dropdown-panel-height: 100px;
+@dropdown-btn-hover-background: #00C1DE;
 
-@menu-item-height: 30px;
+@menu-item-height: 35px;
 @menu-item-background: #42485B;
 @menu-item-color: white;
 @menu-item-hover-background: #00C1DE;
-@menu-item-active-color: #00C1DE;
+@menu-item-active-color: white;
 
 @submenu-item-background: #333744;
 @submenu-item-color: white;
 @submenu-item-hover-background: #00C1DE;
 @submenu-item-active-color: #00C1DE;
+
+@userbox-color: #42485B;
 
 html, body {
   width: 100%;
@@ -55,6 +62,7 @@ html, body {
   right: 0;
   text-align: center;
   font-size: 10px;
+  z-index: 9999;
 }
 
 .main {
@@ -76,6 +84,8 @@ html, body {
   width: @sidebar-width;
   z-index: 9999;
   background-color: @sidebar-background;
+  transition: width 0.2s ease-out;
+  overflow-x: hidden;
 }
 
 .content {
@@ -85,7 +95,9 @@ html, body {
   left: @sidebar-width;
   bottom: 0;
   overflow: auto;
+  padding: @content-padding @content-padding 0 @content-padding;
   z-index: 1000;
+  transition: left 0.2s ease-out;
 }
 
 .header-float-left {
@@ -93,6 +105,19 @@ html, body {
   float: left;
   width: @sidebar-width;
   text-align: center;
+}
+
+.sidebar-collapse-btn {
+  height: 100%;
+  float: left;
+  line-height: @header-height;
+  text-align: center;
+  width: @header-height;
+  &:hover {
+    background-color: @dropdown-btn-hover-background;
+    cursor: pointer;
+    transition: background-color 0.08s ease;
+  }
 }
 
 .dropdown-btn-panel {
@@ -112,8 +137,13 @@ html, body {
   height: 100%;
   padding: 0 5px;
   &:hover {
-    background-color: #28ced6;
+    background-color: @dropdown-btn-hover-background;
     cursor: pointer;
+    transition: background-color 0.08s ease;
+  }
+  i {
+    width: 20px;
+    text-align: center;
   }
 }
 
@@ -121,10 +151,8 @@ html, body {
   position: absolute;
   top: @header-height;
   right: 0;
-  width: @dropdown-panel-width;
-  height: @dropdown-panel-height;
   visibility: hidden;
-  color: black;
+  background-color: @header-background-color;
 }
 
 .menu-box {
@@ -133,56 +161,78 @@ html, body {
   margin: 0;
   list-style-type: none;
   width: 100%;
+  font-size: 14px;
+  li {
+    position: relative;
+  }
 }
 
-.menu-box > li {
-  position: relative;
+.menu-item {
+  height: @menu-item-height;
+  line-height: @menu-item-height;
+  background-color: @menu-item-background;
+  color: @menu-item-color;
+  padding-left: 10px;
+  i {
+    width: 20px;
+    text-align: center;
+  }
+  &:hover {
+    background-color: @menu-item-hover-background;
+    cursor: pointer;
+    transition: background-color 0.08s ease;
+  }
+  &-active {
+    color: @menu-item-active-color;
+    .fa-caret-right {
+      vertical-align: text-top;
+      transform: rotate(90deg);
+    }
+  }
+
+  .fa-caret-right {
+    float: right;
+    width: 20px;
+    text-align: center;
+    line-height: @menu-item-height;
+    transition: transform 0.12s;
+  }
 }
 
 .submenu-box-expand {
   padding: 0;
   margin: 0;
   list-style-type: none;
-  display: none;
+  transition: all 0.5s ease-out;
+  .menu-item {
+    background-color: @submenu-item-background;
+    &:hover {
+      background-color: @menu-item-hover-background;
+      transition: background-color 0.08s ease;
+    }
+  }
 }
 
-.submenu-box-collapse {
+// User box
+.user-box {
   padding: 0;
   margin: 0;
-  position: absolute;
-  left: @sidebar-width;
-  top: 0;
-  width: 100%;
-  list-style-type: none;
-  visibility: hidden;
-}
-
-.menu-item, .submenu-item {
-  height: @menu-item-height;
-  line-height: @menu-item-height;
-  padding-left: 10px;
-}
-
-.menu-item {
-  background-color: @menu-item-background;
-  color: @menu-item-color;
-  &:hover {
-    background-color: @menu-item-hover-background;
-    cursor: pointer;
-  }
-  &-active {
-    color: @menu-item-active-color;
-  }
-}
-
-.submenu-item {
-  background-color: @submenu-item-background;
-  color: @submenu-item-color;
-  &:hover {
-    background-color: @submenu-item-hover-background;
-    cursor: pointer;
-  }
-  &-active {
-    color: @submenu-item-active-color;
+  text-align: left;
+  font-size: 14px;
+  li {
+    height: 40px;
+    width: 200px;
+    line-height: 40px;
+    padding-left: 10px;
+    list-style-type: none;
+    background-color: @userbox-color;
+    &:hover {
+      background-color: @hover-background;
+      cursor: pointer;
+      transition: background-color 0.08s ease;
+    }
+    i {
+      width: 20px;
+    }
   }
 }
