@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>layout test</title>
+  <title>Admin Layout</title>
 
   <link rel="stylesheet/less" type="text/css" href="index.less" />
   <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -19,9 +19,18 @@
 
     <div class="dropdown-btn-panel">
       <div class="dropdown-component">
-        <div class="dropdown-btn">Messages</div>
+        <div class="dropdown-btn">
+          <i class="fa fa-commenting"></i>Messages
+        </div>
         <div class="dropdown-panel">
-          Here is Messages Box~
+          <ul class="message-box">
+            <li>
+              Message 1
+            </li>
+            <li>
+              Message 2
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -32,10 +41,10 @@
         <div class="dropdown-panel">
           <ul class="user-box">
             <li>
-              <i class="fa fa-file"></i>My Profile
+              <i class="fa fa-user"></i>My Profile
             </li>
             <li>
-              <i class="fa fa-file"></i>Log out
+              <i class="fa fa-sign-out"></i>Log out
             </li>
           </ul>
         </div>
@@ -48,7 +57,7 @@
       <ul class="menu-box">
         <li>
           <div class="menu-item">
-            <i class="fa fa-file"></i>Menu 1
+            <i class="fa fa-file"></i>Menu 1<i class="fa fa-caret-right"></i>
           </div>
           <ul class="submenu-box">
             <li>
@@ -63,7 +72,9 @@
           <div class="menu-item"><i class="fa fa-cogs"></i>Menu 2</div>
         </li>
         <li>
-          <div class="menu-item"><i class="fa fa-cogs"></i>Menu 3</div>
+          <div class="menu-item">
+            <i class="fa fa-cogs"></i>Menu 3<i class="fa fa-caret-right"></i>
+          </div>
           <ul class="submenu-box">
             <li>
               <div class="menu-item"><i class="fa fa-file"></i>Submenu 3-1</div>

@@ -1,7 +1,7 @@
-Admin UI CSS Layout
+# Admin UI CSS Layout
 ===
 
-# Overview
+## Overview
 
 An admin UI framework depends on **NOTHING**! Only HTML/Less/CSS and pure ES5 Javascript.
 
@@ -17,23 +17,23 @@ library.
 It's very simple at this moment, and I don't want it become more complex, follow KISS priciple.
 
 
-# Feature
+## Feature
 
 - a simple layout implemented by `absolute` display, including header/sidebar/content/footer
 - a sidebar menu (Now only supports 2 levels), including some animations
 
-# I use ...
+## I use ...
 
 - FontAwesome Icons
 - Less
 
 You can change anything as you like
 
-# Inspiration
+## Inspiration
 
 Aliyun Console
 
-# TODO
+## TODO
 
 - [ ] Menu can support as much as level you want
 - [ ] There will be a smaller version menu when collapse the sidebar

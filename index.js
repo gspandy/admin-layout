@@ -3,11 +3,17 @@
  */
 
 (function() {
+  // Options
   var options = {
-    onlySingleExpand: true
+    onlySingleExpand: true,
+    sidebarWidth: 200,
+    logoText: 'Aliyun Console Like'
   }
 
-  // Header dropdown btn
+  // whether the sidebar is expanded
+  var _sidebarExpand = true
+
+  // DOM Nodes
   var $dropdownBtns = document.getElementsByClassName('dropdown-btn')
   var $dropdownPanels = document.getElementsByClassName('dropdown-panel')
   var $menuItems = document.getElementsByClassName('menu-item')
@@ -17,14 +23,30 @@
   var $sidebar = document.getElementsByClassName('sidebar')
   var $content = document.getElementsByClassName('content')
 
+  var $headerLogo = document.getElementsByClassName('header-float-left')
+
   var i, j
 
   // Toogle sidebar and content
   $sidebarCollapseBtn[0].addEventListener('click', function () {
-    $sidebar[0].style.width = $sidebar[0].style.width === '0px' ? '200px' : '0px'
-    $content[0].style.left = $content[0].style.left === '0px' ? '200px' : '0px'
+    if (_sidebarExpand) {
+      _sidebarExpand = false
+      $sidebar[0].style.width = '0px'
+      $content[0].style.left = '0px'
+
+      $headerLogo[0].style.width = '0px'
+      $headerLogo[0].innerText = ''
+    } else {
+      _sidebarExpand = true
+      $sidebar[0].style.width = options.sidebarWidth + 'px'
+      $content[0].style.left = options.sidebarWidth + 'px'
+
+      $headerLogo[0].style.width = options.sidebarWidth + 'px'
+      $headerLogo[0].innerText = options.logoText
+    }
   })
 
+  // prepare the max-height style on submenu-box for animation
   for (i = 0; i < $submenuPanels.length; i++) {
     $submenuPanels[i].style.maxHeight = '0px'
   }
@@ -56,15 +78,6 @@
   }
 
   for (i = 0; i < $menuItems.length; i++) {
-
-    // append a fa-caret-right icon to the menu-item when it has submenu-box
-    var submenu = $menuItems[i].nextElementSibling
-    if (submenu && submenu.classList.contains('submenu-box')) {
-      var iconDom = document.createElement('i')
-      iconDom.classList.add('fa')
-      iconDom.classList.add('fa-caret-right')
-      $menuItems[i].appendChild(iconDom)
-    }
 
     // Here has not use event deligation, because the menu-item is not too much
     // FIXME bind click event in menu-box element
@@ -113,5 +126,6 @@
 
   }
 
+  window.options = options
 })()
 
