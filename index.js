@@ -7,17 +7,35 @@
   var options = {
     onlySingleExpand: true,
     sidebarWidth: 200,
+    menuItemHeight: 35,
     logoText: 'Aliyun Console Like'
   }
 
   // whether the sidebar is expanded
   var _sidebarExpand = true
 
+  /**
+   * Check out whether parentNode contains childNode (iteratively)
+   * @param parentNode
+   * @param childNode
+   * @returns {boolean}
+   */
+  var contains = function(parentNode, childNode) {
+    var parent = childNode.parentElement
+    if (parent) {
+      return parentNode === parent || arguments.callee(parentNode, parent)
+    } else {
+      return false
+    }
+  }
+
   // DOM Nodes
   var $dropdownBtns = document.getElementsByClassName('dropdown-btn')
   var $dropdownPanels = document.getElementsByClassName('dropdown-panel')
   var $menuItems = document.getElementsByClassName('menu-item')
+  var $topMenuItems = document.getElementsByClassName('menu-item-1')
   var $submenuPanels = document.getElementsByClassName('submenu-box')
+  var $topSubmenuPanels = document.getElementsByClassName('top-submenu-box')
 
   var $sidebarCollapseBtn = document.getElementsByClassName('sidebar-collapse-btn')
   var $sidebar = document.getElementsByClassName('sidebar')
@@ -79,34 +97,40 @@
 
   for (i = 0; i < $menuItems.length; i++) {
 
-    // Here has not use event deligation, because the menu-item is not too much
-    // FIXME bind click event in menu-box element
-
+    // For convenient, has not use event deligation, because the menu-item is not too much
     $menuItems[i].addEventListener('click', function (evt) {
       var ele = evt.currentTarget
       var submenuPanel = ele.nextElementSibling
 
       if (submenuPanel && submenuPanel.classList.contains('submenu-box')) {
         // has sub menu
+
         var isCollapse = submenuPanel.style.maxHeight === '0px'
 
         if (isCollapse) {
-          // Collapse others
+          // if click top level, collapse others
           if (options.onlySingleExpand) {
-            for (j = 0; j < $submenuPanels.length; j++) {
-              $submenuPanels[j].style.maxHeight = '0px'
+
+            // Only traverse topSubmenuPanel, collapse all **except** the parent top submenu panel
+            for (j = 0; j < $topSubmenuPanels.length; j++) {
+              if (!contains($topSubmenuPanels[j], submenuPanel)) {
+                $topSubmenuPanels[j].style.maxHeight = '0px'
+              }
             }
 
-            for (j = 0; j < $menuItems.length; j++) {
-              $menuItems[j].classList.remove('menu-item-expand')
+            for (j = 0; j < $topMenuItems.length; j++) {
+              var topSubmenuBox = $topMenuItems[j].nextElementSibling
+              if (topSubmenuBox && !contains(topSubmenuBox, submenuPanel)) {
+                $topMenuItems[j].classList.remove('menu-item-expand')
+              }
             }
           }
 
-          // Expand it
-          var height = submenuPanel.childElementCount * 50
+          // Expand it, iteratively calculate the menu-item in children
+          var height = submenuPanel.getElementsByClassName('menu-item').length * (options.menuItemHeight + 10)
+
           submenuPanel.style.maxHeight = height + 'px'
           ele.classList.add('menu-item-expand')
-
         } else {
           // Collapse it
           submenuPanel.style.maxHeight = '0px'
@@ -127,5 +151,7 @@
   }
 
   window.options = options
+
+
 })()
 

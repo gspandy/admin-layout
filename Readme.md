@@ -17,10 +17,12 @@ library.
 It's very simple at this moment, and I don't want it become more complex, follow KISS priciple.
 
 
+You can use it in other template, like Vue/Angular/React even Freemarker.
+
 ## Feature
 
 - a simple layout implemented by `absolute` display, including header/sidebar/content/footer
-- a sidebar menu (Now only supports 2 levels), including some animations
+- a sidebar menu (~~Now only supports 2 levels~~), including some animations. Menu now supports **MANY** levels
 
 ## I use ...
 
@@ -35,5 +37,5 @@ Aliyun Console
 
 ## TODO
 
-- [ ] Menu can support as much as level you want
+- [*] Menu can support as much as level you want
 - [ ] There will be a smaller version menu when collapse the sidebar

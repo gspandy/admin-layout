@@ -79,11 +79,9 @@ html, body {
 .main {
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: @header-height;
+  bottom: @footer-height;
   right: 0;
-  margin-top: @header-height;
-  margin-bottom: @footer-height;
   z-index: 1000;
 }
 
@@ -179,7 +177,6 @@ html, body {
   line-height: @menu-item-height;
   background-color: @menu-item-background;
   color: @menu-item-color;
-  padding-left: 10px;
   i {
     .icon
   }
@@ -206,6 +203,14 @@ html, body {
     line-height: @menu-item-height;
     transition: transform @caret-rotate-duration;
   }
+}
+
+.generate-menu-item(6);
+.generate-menu-item(@n, @i: 1) when (@i =< @n) {
+  .menu-item-@{i} {
+    padding-left: 10px * @i;
+  }
+  .generate-menu-item(@n, (@i + 1));
 }
 
 .submenu-box {
