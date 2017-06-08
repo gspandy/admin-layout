@@ -14,21 +14,6 @@
   // whether the sidebar is expanded
   var _sidebarExpand = true
 
-  /**
-   * Check out whether parentNode contains childNode (iteratively)
-   * @param parentNode
-   * @param childNode
-   * @returns {boolean}
-   */
-  var contains = function(parentNode, childNode) {
-    var parent = childNode.parentElement
-    if (parent) {
-      return parentNode === parent || arguments.callee(parentNode, parent)
-    } else {
-      return false
-    }
-  }
-
   // DOM Nodes
   var $dropdownBtns = document.getElementsByClassName('dropdown-btn')
   var $dropdownPanels = document.getElementsByClassName('dropdown-panel')
@@ -109,20 +94,14 @@
 
         if (isCollapse) {
           // if click top level, collapse others
-          if (options.onlySingleExpand) {
+          if (options.onlySingleExpand && ele.classList.contains('menu-item-1')) {
 
-            // Only traverse topSubmenuPanel, collapse all **except** the parent top submenu panel
             for (j = 0; j < $topSubmenuPanels.length; j++) {
-              if (!contains($topSubmenuPanels[j], submenuPanel)) {
-                $topSubmenuPanels[j].style.maxHeight = '0px'
-              }
+              $topSubmenuPanels[j].style.maxHeight = '0px'
             }
 
             for (j = 0; j < $topMenuItems.length; j++) {
-              var topSubmenuBox = $topMenuItems[j].nextElementSibling
-              if (topSubmenuBox && !contains(topSubmenuBox, submenuPanel)) {
-                $topMenuItems[j].classList.remove('menu-item-expand')
-              }
+              $topMenuItems[j].classList.remove('menu-item-expand')
             }
           }
 
