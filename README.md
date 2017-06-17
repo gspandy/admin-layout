@@ -83,7 +83,7 @@ A typical menu example:
 ```
 
 Terminology | Classes | Description
-- | - | -
+--- | --- | ---
 Menu Item | [`menu-item`, `menu-item-xxx`] | a `div` inside `li`, includeing icon and text
 Submenu Box | [`submenu-box`, `top-submenu-box`] | a `ul` inside `li`, the children of a menu
 
