@@ -45,7 +45,7 @@ Use Nginx or other tools to start a web server with the folder.
 
 > Contents in `[]` is the class used.
 
-1. Header
+#### Header
 
 Header use flex display, there are 3 parts.
 
@@ -53,11 +53,11 @@ Header use flex display, there are 3 parts.
 - Collapse Button [`sidebar-collapse-btn`]
 - Dropdown Button Panel [`dropdown-btn-panel`]
 
-2. Dropdown Panel
+#### Dropdown Panel
 
 Each button(including the dropdown menu) is a component [`dropdown-component`]. A component consists of a button [`dropdown-btn`] and a panel [`dropdown-panel`].
 
-3. Sidebar Menu
+#### Sidebar Menu
 
 A typical menu example:
 
@@ -84,10 +84,11 @@ A typical menu example:
 
 Terminology | Classes | Description
 --- | --- | ---
+Menu Box | [`menu-box`] | a `ul` element
 Menu Item | [`menu-item`, `menu-item-xxx`] | a `div` inside `li`, includeing icon and text
 Submenu Box | [`submenu-box`, `top-submenu-box`] | a `ul` inside `li`, the children of a menu
 
-Note: A `fa-caret-right` icon should be appended to the menu label when the menu has children(submenu box), an animation is added to that icon.
+> A `fa-caret-right` icon should be appended to the menu label when the menu has children(submenu box), an animation is added to that icon.
 
 ### Mini Menu
 
@@ -97,7 +98,7 @@ When you click the `collapse menu button`, the sidebar menu will collapse to a s
 
 As I mention before, this project **SHOULD** depent on **NOTHING**. However, some CSS or Interpreter is necessary. You can change them to any subsititudes(such as scss, Google Icon) as you like.
 
-- FontAwesome Icons
+- Font Awesome Icons
 - Less
 
 ## Inspiration

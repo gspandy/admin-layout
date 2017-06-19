@@ -41,10 +41,63 @@ $ git clone git@github.com:ryancui-/admin-layout.git
 
 > `[]` 中包含的是响应项目的类名
 
-1. 顶栏
+#### 顶栏
 
 顶栏内部是 `flex` 布局，分成三部分：
 
 - Logo 部分 [`header-float-left`]，logo 部分会与侧边栏菜单同步伸缩
 - 侧边栏折叠按钮 [`sidebar-collapse-btn`]
 - 下拉按钮区 [`dropdown-btn-panel`]
+
+#### 下拉窗
+
+每个下拉按钮（包括下拉菜单窗口）是一个组件 [`dropdown-component`]. 组件包括一个按钮 [`dropdown-btn`] 和一个窗体 [`dropdown-panel`]。
+
+#### 侧边栏
+
+一个典型的菜单例子：
+
+```HTML
+<ul class="menu-box">
+  <li>
+    <div class="menu-item menu-item-1">
+      <i class="fa fa-file"></i>Menu 1<i class="fa fa-caret-right"></i>
+    </div>
+    <ul class="submenu-box top-submenu-box" style="max-height: 0px;">
+      <li>
+        <div class="menu-item menu-item-2"><i class="fa fa-file"></i>Submenu 1-1</div>
+      </li>
+      <li>
+        <div class="menu-item menu-item-2"><i class="fa fa-file"></i>Submenu 1-2</div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <div class="menu-item menu-item-1"><i class="fa fa-cogs"></i>Menu 2</div>
+  </li>
+</ul>
+```
+
+术语 | CSS 类名 | 说明
+--- | --- | ---
+Menu Box | [`menu-box`] | 菜单容器
+Menu Item | [`menu-item`, `menu-item-xxx`] | 在 `li` 中的一个 `div`， 里面包含菜单的图标和文字
+Submenu Box | [`submenu-box`, `top-submenu-box`] | 在 `li` 中的 `ul`，是一个新的菜单容器，表示对应 Menu Item 的子菜单
+
+> 当菜单项有子菜单时，需要添加一个 `fa-caret-right` 的 Font Awesome 图标到 Menu Item 元素之后。当菜单展开或收起时，图标会有相应的动画效果。
+
+### 迷你菜单
+
+当点击收起侧边栏按钮时，侧边栏会收起变成一个迷你模式。
+
+## 依赖
+
+如前所言，这个项目没有依赖任何框架。但为了方便开发，我们依然使用了 CSS 预编译和图标库。你完全可以使用另外的工具进行替换，这十分简单。
+
+- Font Awesome Icons
+- Less
+
+## 灵感与启发
+
+- 阿里云控制台
+- AdminLTE 项目
