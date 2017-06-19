@@ -25,6 +25,8 @@
 @submenu-item-color: white;
 @submenu-item-active-color: #00C1DE;
 
+@hover-menu-left: 70px;
+
 @content-padding: 10px;
 
 @userbox-color: #42485B;
@@ -209,11 +211,13 @@ html, body {
         }
       }
     }
+  }
 
+  .menu-box-collapse {
     .hover-submenu {
       position: absolute;
       top: 0;
-      left: 40px;
+      left: @hover-menu-left;
       width: @sidebar-width;
     }
 
@@ -223,6 +227,11 @@ html, body {
 
     .hover-submenu-hide {
       display: none;
+    }
+
+    .menu-item-1 {
+      text-align: center;
+      padding-left: 0px;
     }
   }
 }

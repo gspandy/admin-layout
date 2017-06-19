@@ -27,6 +27,7 @@
       MENU_ITEM_ACTIVE: 'menu-item-active',
       SIDEBAR_COLLAPSE_BTN: 'sidebar-collapse-btn',
       SIDEBAR: 'sidebar',
+      MENU_BOX: 'menu-box',
       CONTENT: 'content',
       HEADER_LOGO: 'header-float-left',
       HOVER_SUBMENU: 'hover-submenu',
@@ -39,9 +40,11 @@
       this.options = {
         onlySingleExpand: true,
         sidebarWidth: 200,
-        sidebarMiniWidth: 40,
+        sidebarMiniWidth: 70,
         menuItemHeight: 35
       }
+
+      this.tmpMenuText = []
 
       // whether the sidebar is expanded
       this._sidebarExpand = true
@@ -57,8 +60,65 @@
 
       this.$sidebarCollapseBtn = document.getElementsByClassName(this.consts.SIDEBAR_COLLAPSE_BTN)[0]
       this.$sidebar = document.getElementsByClassName(this.consts.SIDEBAR)[0]
+      this.$menuBox = document.getElementsByClassName(this.consts.MENU_BOX)[0]
       this.$content = document.getElementsByClassName(this.consts.CONTENT)[0]
       this.$headerLogo = document.getElementsByClassName(this.consts.HEADER_LOGO)[0]
+    },
+
+    /** Expand sidebar */
+    expandSidebar: function () {
+      var self = this, j
+
+      self._sidebarExpand = true
+
+      self.$menuBox.classList.remove('menu-box-collapse')
+
+      // collapse all top submenu panel and remove class of hover outside
+      for (j = 0; j < self.$topMenuItems.length; j++) {
+        // Restore the menu text from tmp
+        self.$topMenuItems[j].innerHTML = self.tmpMenuText[j]
+
+        self.hideSubmenu(self.$topMenuItems[j])
+        var submenuPanel = self.$topMenuItems[j].nextElementSibling
+        if (submenuPanel) {
+          submenuPanel.classList.remove(self.consts.HOVER_SUBMENU)
+          submenuPanel.classList.remove(self.consts.HOVER_SUBMENU_HIDE)
+          submenuPanel.classList.remove(self.consts.HOVER_SUBMENU_SHOW)
+        }
+      }
+
+      self.$sidebar.style.width = self.options.sidebarWidth + 'px'
+      self.$content.style.left = self.options.sidebarWidth + 'px'
+      self.$headerLogo.style.width = self.options.sidebarWidth + 'px'
+    },
+
+    /** Collapse sidebar */
+    collapseSidebar: function () {
+      var self = this, j
+
+      self._sidebarExpand = false
+
+      self.$menuBox.classList.add('menu-box-collapse')
+
+      // Expand all the top submenu panel and add extra class to hover outside
+      for (j = 0; j < self.$topMenuItems.length; j++) {
+        // Store the menu text in tmp and remove all the text
+        self.tmpMenuText[j] = self.$topMenuItems[j].innerHTML
+        // FIXME should be more universal
+        var index = self.$topMenuItems[j].innerHTML.indexOf('</i>')
+        self.$topMenuItems[j].innerHTML = self.$topMenuItems[j].innerHTML.substring(0, index + 4)
+
+        self.showSubmenu(self.$topMenuItems[j])
+        var submenuPanel = self.$topMenuItems[j].nextElementSibling
+        if (submenuPanel) {
+          submenuPanel.classList.add(self.consts.HOVER_SUBMENU)
+          submenuPanel.classList.add(self.consts.HOVER_SUBMENU_HIDE)
+        }
+      }
+
+      self.$sidebar.style.width = self.options.sidebarMiniWidth + 'px'
+      self.$content.style.left = self.options.sidebarMiniWidth + 'px'
+      self.$headerLogo.style.width = self.options.sidebarMiniWidth + 'px'
     },
 
     /** Show dropdown panel */
@@ -109,38 +169,9 @@
 
       this.$sidebarCollapseBtn.addEventListener('click', function () {
         if (self._sidebarExpand) {
-          self._sidebarExpand = false
-
-          // Expand all the top submenu panel and add extra class to hover outside
-          for (j = 0; j < self.$topMenuItems.length; j++) {
-            self.showSubmenu(self.$topMenuItems[j])
-            var submenuPanel = self.$topMenuItems[j].nextElementSibling
-            if (submenuPanel) {
-              submenuPanel.classList.add(self.consts.HOVER_SUBMENU)
-              submenuPanel.classList.add(self.consts.HOVER_SUBMENU_HIDE)
-            }
-          }
-
-          self.$sidebar.style.width = self.options.sidebarMiniWidth + 'px'
-          self.$content.style.left = self.options.sidebarMiniWidth + 'px'
-          self.$headerLogo.style.width = self.options.sidebarMiniWidth + 'px'
+          self.collapseSidebar()
         } else {
-          self._sidebarExpand = true
-
-          // collapse all top submenu panel and remove class of hover outside
-          for (j = 0; j < self.$topMenuItems.length; j++) {
-            self.hideSubmenu(self.$topMenuItems[j])
-            var submenuPanel = self.$topMenuItems[j].nextElementSibling
-            if (submenuPanel) {
-              submenuPanel.classList.remove(self.consts.HOVER_SUBMENU)
-              submenuPanel.classList.remove(self.consts.HOVER_SUBMENU_HIDE)
-              submenuPanel.classList.remove(self.consts.HOVER_SUBMENU_SHOW)
-            }
-          }
-
-          self.$sidebar.style.width = self.options.sidebarWidth + 'px'
-          self.$content.style.left = self.options.sidebarWidth + 'px'
-          self.$headerLogo.style.width = self.options.sidebarWidth + 'px'
+          self.expandSidebar()
         }
       })
     },
