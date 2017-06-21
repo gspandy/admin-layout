@@ -1,11 +1,11 @@
 Admin UI CSS Layout
 ======
 
-#### English | <a href="#chinese">中文</a><a id="english"></a>
+#### English | <a href="#chinese">中文</a><a id="english"></a>
 
 ## Overview
 
-Demo: [Admin Layout](https://ryancui-.github.io/admin-layout/)
+Demo: <a href="https://ryancui-.github.io/admin-layout/" target="_blank">Admin Layout</a>
 
 An admin UI framework depends on **NOTHING**! Only HTML/Less/CSS and pure ES5 Javascript.
 
@@ -123,7 +123,7 @@ As I mention before, this project **SHOULD** depent on **NOTHING**. However, som
 
 ## 概述
 
-示例: [Admin Layout](https://ryancui-.github.io/admin-layout/)
+示例: <a href="https://ryancui-.github.io/admin-layout/" target="_blank">Admin Layout</a>
 
 一个**不依赖**任何框架和库的前端后台管理 UI 框架。只包括最轻量的 HTML/Less 代码和原生 JavaScript(ES5) 代码。
 
