@@ -112,11 +112,9 @@ As I mention before, this project **SHOULD** depent on **NOTHING**. However, som
 
 - [x] Menu can support as much as level you want
 - [x] There will be a smaller version menu when collapse the sidebar
-- [ ] Add travis test
 - [x] Chinese documentation
 - [x] Refactor the js code into a more module form
 - [x] Slim sidebar should just have the icon in the middle, no text label
-- [ ] Add a header in hover submenu to indicate which top menu the submenu belongs to
 
 
 #### 中文 | <a href="#english">English</a><a id="chinese"></a>
